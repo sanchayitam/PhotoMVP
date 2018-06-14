@@ -38,7 +38,7 @@ Screenshots
 ![PhotoMVP screenshot](https://softpian.github.io/gifs/PhotoMVP_5.gif)
 
 
-Getting Stared
+Getting Started
 --------------
 In your local.properties file, put your own key given from [flickr][0] :
 
