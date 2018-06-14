@@ -3,7 +3,7 @@ Photo application based on Android MVP Architecture
 
 Introduction
 ------------
-#### Android MVP Architecture
+### Android MVP Architecture
 This repository contains a Photo application implementing Android MVP Architecture.
 
 The application illustrates how to implement [Model-View-Presenter][10] (MVP) architecture based on Android.
@@ -14,7 +14,7 @@ Please refer to [Arndroid Architecture Blueprints][11] for detailed information 
 
 [11]: https://github.com/googlesamples/android-architecture
 
-#### flickr RESTful API
+### flickr RESTful API
 This application uses RESTful API of [flickr][0] which is a popular image/video hosting service in order to get photos.
 
 It receives photo data formatted in JSON and converts it to Java Objects including photo url, title, owner's name, date, description, viewer's count, comment's count and so on.
@@ -23,7 +23,7 @@ Please visit [https://www.flickr.com/services/api/](https://www.flickr.com/servi
 
 [0]: https://www.flickr.com/services/api/
 
-#### Android development skills
+### Android development skills
 This repository is able to help understand how to use the following skills.
 * How to call RESTful API with Retrofit
 * How to use OkHttp Logging Intercepter in order to debug HTTP request/response data  
@@ -35,7 +35,7 @@ This repository is able to help understand how to use the following skills.
 
 Screenshots
 -----------
-![PhotoMVP screenshot](https://softpian.github.io/gifs/PhotoMVP_new.gif)
+![PhotoMVP screenshot](https://softpian.github.io/gifs/PhotoMVP_1.gif)
 
 
 Getting Stared
