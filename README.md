@@ -35,7 +35,7 @@ This repository is able to help understand how to use the following skills.
 
 Screenshots
 -----------
-![PhotoMVP screenshot](https://softpian.github.io/gifs/PhotoMVP_4.gif)
+![PhotoMVP screenshot](https://softpian.github.io/gifs/PhotoMVP_5.gif)
 
 
 Getting Stared
