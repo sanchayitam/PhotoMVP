@@ -40,7 +40,7 @@ Screenshots
 
 Getting Stared
 --------------
-In your local.properties file, put your own key given from [flickr][0]:
+In your local.properties file, put your own key given from [flickr][0] :
 
 ```
 flickrApiKey="yourOwnAPIKey"
