@@ -26,6 +26,7 @@ Please visit [https://www.flickr.com/services/api/](https://www.flickr.com/servi
 #### Android development skills
 This repository is able to help understand how to use the following skills.
 * How to call RESTful API with Retrofit
+* How to use OkHttp Logging Intercepter in order to debug HTTP request/response data  
 * How to convert JSON to Java Objects with Moshi
 * How to load images from a remote server with Glide
 * How to reduce boilerplate codes with ButterKnife
@@ -34,7 +35,7 @@ This repository is able to help understand how to use the following skills.
 
 Screenshots
 -----------
-![PhotoMVP screenshot](https://softpian.github.io/gifs/PhotoMVP.gif)
+![PhotoMVP screenshot](https://softpian.github.io/gifs/PhotoMVP_new.gif)
 
 
 Getting Stared
