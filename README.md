@@ -6,7 +6,7 @@ Introduction
 ### Android MVP Architecture
 This repository contains a Photo application implementing Android MVP Architecture.
 
-The application illustrates how to implement [Model-View-Presenter][10] (MVP) architecture based on Android.
+The application illustrates how to implement [Model-View-Presenter][10] (MVP) architecture patteren based on Android.
 
 [10]: https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter
 
@@ -21,10 +21,11 @@ It receives photo data formatted in JSON and converts it to Java Objects includi
 
 Please visit [https://www.flickr.com/services/api/](https://www.flickr.com/services/api/) for more detailed information.
 
-[0]: https://www.flickr.com/services/api/
+[0]: https://www.flickr.com/
 
 ### Android development skills
 This repository is able to help understand how to use the following skills.
+* How to implement Android Model-View-Presentation architecture pattern
 * How to call RESTful API with Retrofit
 * How to use OkHttp Logging Intercepter in order to debug HTTP request/response data  
 * How to convert JSON to Java Objects with Moshi
@@ -40,7 +41,7 @@ Screenshots
 
 Getting Started
 --------------
-In your local.properties file, put your own key given from [flickr][0] :
+In your local.properties file, put your own key given from [flickr][100] :
 
 ```
 flickrApiKey="yourOwnAPIKey"
@@ -50,7 +51,7 @@ For example, you should write it as below.
 ```
 flickrApiKey="788a5fnd5r134id6a792ff39pp68dcs3"
 ```
-
+[100]: https://www.flickr.com/services/api/
 
 Libraries Used
 ---------------
