@@ -54,12 +54,19 @@ public class PhotoDetailPresenter implements PhotoDetailContract.Presenter {
                                 mView.showEverythingWithoutToolbar(photo.getPhotoUrl(), photo.getTitle().getContent(), dateLastUpdated,
                                                                     commentCountFormatted, viewCountFormatted, photo.getDescription().getContent());
                             } else {
-                                mView.notifyLoadingFailed();
-                                Log.e(TAG, "No Response body or The status from Server is not 'ok'");
+                                if (photoInfo != null) {
+                                    mView.notifyLoadingFailed(photoInfo.getHttpStatusCode(), photoInfo.getErrorMessage());
+                                    Log.e(TAG, "No Response body or The status from Server is " + photoInfo.getStat());
+                                    Log.e(TAG, "Flickr Response code: " + photoInfo.getHttpStatusCode() + ", message: " + photoInfo.getErrorMessage());
+                                } else {
+                                    mView.notifyLoadingFailed();
+                                    Log.e(TAG, "No Response body or The status from Server is not 'ok'");
+                                    Log.e(TAG, "HTTP Response code: " + response.code() + ", message: " + response.message());
+                                }
                             }
                         } else {
-                            mView.notifyLoadingFailed();
-                            Log.e(TAG, "Requesting to server failed, HTTP Response code: " + response.code());
+                            mView.notifyLoadingFailed(response.code(), response.message());
+                            Log.e(TAG, "Requesting to server failed, HTTP Response code: " + response.code() + ", message: " + response.message());
                         }
 
                         mView.hideProgress();
@@ -69,8 +76,9 @@ public class PhotoDetailPresenter implements PhotoDetailContract.Presenter {
                     public void onFailure(Call<PhotoInfo> call, Throwable t) {
 
                         mView.hideProgress();
-                        mView.notifyLoadingFailed();
-                        Log.e(TAG, "Network exception occurred!, detailed exception information: " + t.getMessage());
+                        mView.notifyLoadingFailed(t);
+                        Log.e(TAG, "Network exception occurred!, cause: " + t.getCause());
+                        Log.e(TAG, "Network exception occurred!, message: " + t.getMessage());
                     }
                 });
     }

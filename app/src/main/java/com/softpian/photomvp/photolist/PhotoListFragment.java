@@ -111,12 +111,27 @@ public class PhotoListFragment extends Fragment implements PhotoListContract.Vie
     }
 
     @Override
+    public void notifyLoadingFailed(int code, String message) {
+        if (!isDetached()) {
+            Toast.makeText(getContext(), "Loading photos failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "code: " + code + ", message: " + message, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void notifyLoadingFailed(Throwable t) {
+        if (!isDetached()) {
+            Toast.makeText(getContext(), "Loading photos failed, Exception occurred!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Error message: " + t.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
     public void showBottomSheetDialog(String photoId) {
         PhotoDetailFragment photoDetailFragment = PhotoDetailFragment.newInstance(photoId);
         photoDetailFragment.show(getActivity().getSupportFragmentManager(), "PhotoDetailFragment");
 
         PhotoDetailPresenter photoDetailPresenter
                 = new PhotoDetailPresenter(new PhotoRepository(), photoDetailFragment);
-
     }
 }

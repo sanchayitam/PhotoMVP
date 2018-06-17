@@ -14,6 +14,10 @@ public class PhotoListContract {
 
         void notifyLoadingFailed();
 
+        void notifyLoadingFailed(int code, String message);
+
+        void notifyLoadingFailed(Throwable t);
+
         void showBottomSheetDialog(String photoId);
     }
 

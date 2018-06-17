@@ -175,4 +175,20 @@ public class PhotoDetailFragment extends BottomSheetDialogFragment implements Ph
             Toast.makeText(getContext(), "Loading photo failed", Toast.LENGTH_LONG).show();
         }
     }
+
+    @Override
+    public void notifyLoadingFailed(int code, String message) {
+        if (!isDetached()) {
+            Toast.makeText(getContext(), "Loading photos failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "code: " + code + ", message: " + message, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void notifyLoadingFailed(Throwable t) {
+        if (!isDetached()) {
+            Toast.makeText(getContext(), "Loading photos failed, Exception occurred!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Error message: " + t.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
 }

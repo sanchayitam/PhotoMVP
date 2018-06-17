@@ -61,12 +61,19 @@ public class PhotoListPresenter implements PhotoListContract.Presenter {
                                 mPhotoRecyclerViewModel.addAllItem(photoResponse.getPhotos().getPhoto());
                                 mPhotoRecyclerViewModel.notifyDataSetChange();
                             } else {
-                                Log.e(TAG, "No Response body or The status from Server is not 'ok'");
-                                mView.notifyLoadingFailed();
+                                if (photoResponse != null) {
+                                    mView.notifyLoadingFailed(photoResponse.getHttpStatusCode(), photoResponse.getErrorMessage());
+                                    Log.e(TAG, "No Response body or The status from Server is " + photoResponse.getStat());
+                                    Log.e(TAG, "Flickr Response code: " + photoResponse.getHttpStatusCode() + ", message: " + photoResponse.getErrorMessage());
+                                } else {
+                                    mView.notifyLoadingFailed();
+                                    Log.e(TAG, "No Response body or The status from Server is not 'ok'");
+                                    Log.e(TAG, "HTTP Response code: " + response.code() + ", message: " + response.message());
+                                }
                             }
                         } else {
-                            mView.notifyLoadingFailed();
-                            Log.e(TAG, "Requesting to server failed, HTTP Response code: " + response.code());
+                            mView.notifyLoadingFailed(response.code(), response.message());
+                            Log.e(TAG, "Requesting to server failed, HTTP Response code: " + response.code() + ", message: " + response.message());
                         }
 
                         mView.hideProgress();
@@ -76,8 +83,9 @@ public class PhotoListPresenter implements PhotoListContract.Presenter {
                     public void onFailure(Call<PhotoResponse> call, Throwable t) {
 
                         mView.hideProgress();
-                        mView.notifyLoadingFailed();
-                        Log.e(TAG, "Network exception occurred!, detailed exception information: " + t.getMessage());
+                        mView.notifyLoadingFailed(t);
+                        Log.e(TAG, "Network exception occurred!, cause: " + t.getCause());
+                        Log.e(TAG, "Network exception occurred!, message: " + t.getMessage());
                     }
                 });
     }

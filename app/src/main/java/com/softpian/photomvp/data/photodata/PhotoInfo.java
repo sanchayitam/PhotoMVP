@@ -4,11 +4,15 @@ import com.squareup.moshi.Json;
 
 public class PhotoInfo{
 
-	@Json(name = "stat")
 	private String stat;
 
-	@Json(name = "photo")
 	private Photo photo;
+
+	@Json(name = "code")
+	private int httpStatusCode;
+
+	@Json(name = "message")
+	private String errorMessage;
 
 	public void setStat(String stat){
 		this.stat = stat;
@@ -26,12 +30,22 @@ public class PhotoInfo{
 		return photo;
 	}
 
+	public int getHttpStatusCode() {
+		return httpStatusCode;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
 	@Override
  	public String toString(){
 		return 
 			"PhotoInfo{" + 
 			"stat = '" + stat + '\'' + 
-			",photo = '" + photo + '\'' + 
+			",photo = '" + photo + '\'' +
+			",httpStatusCode = '" + httpStatusCode + '\'' +
+			",errorMessage = '" + errorMessage + '\'' +
 			"}";
 		}
 }

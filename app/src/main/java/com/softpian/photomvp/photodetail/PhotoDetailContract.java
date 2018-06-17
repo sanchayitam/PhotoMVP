@@ -13,6 +13,10 @@ public class PhotoDetailContract {
 
         void notifyLoadingFailed();
 
+        void notifyLoadingFailed(int code, String message);
+
+        void notifyLoadingFailed(Throwable t);
+
         void showToolbarItem(String buddyIconUrl, String ownerName);
 
         void showEverythingWithoutToolbar(String photoUrl, String title, String date, String commentCount, String viewCount, String description);
