@@ -14,6 +14,9 @@ Please refer to [Arndroid Architecture Blueprints][11] for detailed information 
 
 [11]: https://github.com/googlesamples/android-architecture
 
+Here is MVP architecture of this application.
+<p><img src=https://softpian.github.io/images/mvp_diagram.png width="700" /></p>
+
 ### flickr RESTful API
 This application uses RESTful API of [flickr][0] which is a popular image/video hosting service in order to get photos.
 
