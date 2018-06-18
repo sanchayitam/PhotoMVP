@@ -59,8 +59,13 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
     }
 
     @Override
-    public void notifyDataSetChange() {
+    public void notifyDataSetChangedWrapper() {
         notifyDataSetChanged();
+    }
+
+    @Override
+    public void notifyItemRangeInsertedWrapper(int positionStart, int itemCount) {
+        notifyItemRangeInserted(positionStart, itemCount);
     }
 
     static final class PhotoViewHolder extends RecyclerView.ViewHolder {

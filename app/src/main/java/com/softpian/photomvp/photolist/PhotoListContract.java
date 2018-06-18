@@ -23,7 +23,7 @@ public class PhotoListContract {
 
     interface Presenter extends BasePresenter {
 
-        void loadFlickrImage();
+        void loadFlickrImage(int page);
 
         void setPhotoRecyclerViewModel(PhotoRecyclerViewModel photoRecyclerViewModel);
     }

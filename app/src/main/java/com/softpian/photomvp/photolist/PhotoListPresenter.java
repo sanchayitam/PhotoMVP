@@ -20,8 +20,6 @@ public class PhotoListPresenter implements PhotoListContract.Presenter {
 
     private PhotoRecyclerViewModel mPhotoRecyclerViewModel;
 
-    private int mPage = 0;
-
     public PhotoListPresenter(PhotoRepository photoRepository, PhotoListContract.View view) {
 
         mPhotoRepository = photoRepository;
@@ -38,18 +36,20 @@ public class PhotoListPresenter implements PhotoListContract.Presenter {
 
     @Override
     public void start() {
-        loadFlickrImage();
+        loadFlickrImage(1);
     }
 
     @Override
-    public void loadFlickrImage() {
+    public void loadFlickrImage(int page) {
 
-        String searchFor = "BeautifulNewZealand";   //hard coded
-        int perPage = 10;
+        // searchFor is hard coded
+        // : Change from BeautifulNewZealand to BeautifulNature in order to check an infinite scrolling feature
+        String searchFor = "BeautifulNature";
+        int perPage = 30;
 
         mView.showProgress();
 
-        mPhotoRepository.getFlickrPhotosSearch(searchFor, ++mPage, perPage)
+        mPhotoRepository.getFlickrPhotosSearch(searchFor, page, perPage)
                 .enqueue(new Callback<PhotoResponse>() {
                     @Override
                     public void onResponse(Call<PhotoResponse> call, Response<PhotoResponse> response) {
@@ -57,9 +57,10 @@ public class PhotoListPresenter implements PhotoListContract.Presenter {
                         if (response.isSuccessful()) {
                             PhotoResponse photoResponse = response.body();
                             if (photoResponse != null && "ok".equals(photoResponse.getStat())) {
-                                mPage = photoResponse.getPhotos().getPage();
+                                int curSize = mPhotoRecyclerViewModel.getItemCount();
+                                int newSize = photoResponse.getPhotos().getPhoto().size();
                                 mPhotoRecyclerViewModel.addAllItem(photoResponse.getPhotos().getPhoto());
-                                mPhotoRecyclerViewModel.notifyDataSetChange();
+                                mPhotoRecyclerViewModel.notifyItemRangeInsertedWrapper(curSize, newSize);
                             } else {
                                 if (photoResponse != null) {
                                     mView.notifyLoadingFailed(photoResponse.getHttpStatusCode(), photoResponse.getErrorMessage());

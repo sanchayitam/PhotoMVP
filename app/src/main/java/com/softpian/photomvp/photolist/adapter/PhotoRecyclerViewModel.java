@@ -12,5 +12,7 @@ public interface PhotoRecyclerViewModel {
 
     int getItemCount();
 
-    void notifyDataSetChange();
+    void notifyDataSetChangedWrapper();
+
+    void notifyItemRangeInsertedWrapper(int positionStart, int itemCount);
 }

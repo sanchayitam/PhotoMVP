@@ -18,6 +18,7 @@ import com.softpian.photomvp.photodetail.PhotoDetailFragment;
 import com.softpian.photomvp.photodetail.PhotoDetailPresenter;
 import com.softpian.photomvp.photolist.adapter.OnPhotoClickedListener;
 import com.softpian.photomvp.photolist.adapter.PhotoAdapter;
+import com.softpian.photomvp.util.InfiniteScrollListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +29,8 @@ public class PhotoListFragment extends Fragment implements PhotoListContract.Vie
     private PhotoListContract.Presenter mPresenter;
 
     private Unbinder mUnbinder;
+
+    private RecyclerView.OnScrollListener mOnScrollListener;
 
     @BindView(R.id.rvPhotoList) RecyclerView mPhotoListView;
     @BindView(R.id.pbIsLoading) ProgressBar mLoadingProgress;
@@ -49,17 +52,6 @@ public class PhotoListFragment extends Fragment implements PhotoListContract.Vie
         return view;
     }
 
-    private final RecyclerView.OnScrollListener mOnScrollListener = new RecyclerView.OnScrollListener() {
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy);
-
-            // TODO: should write code to help user keep scrolling at the last item
-
-
-        }
-    };
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -69,9 +61,17 @@ public class PhotoListFragment extends Fragment implements PhotoListContract.Vie
         };
 
         PhotoAdapter photoAdapter = new PhotoAdapter(listener);
-
         mPhotoListView.setAdapter(photoAdapter);
-        mPhotoListView.setLayoutManager(new GridLayoutManager(this.getContext(), 3));
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 3);
+        mPhotoListView.setLayoutManager(gridLayoutManager);
+
+        mOnScrollListener = new InfiniteScrollListener(gridLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                mPresenter.loadFlickrImage(page + 1);
+            }
+        };
         mPhotoListView.addOnScrollListener(mOnScrollListener);
 
         mPresenter.setPhotoRecyclerViewModel(photoAdapter);

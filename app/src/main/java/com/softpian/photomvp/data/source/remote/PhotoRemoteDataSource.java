@@ -25,7 +25,7 @@ public class PhotoRemoteDataSource implements PhotoDataSource {
         queryParameters.put("safe_search", Constant.SAFE_SEARCH);
         queryParameters.put("text", text);
         queryParameters.put("page", String.valueOf(page));
-        queryParameters.put("perpage", String.valueOf(perPage));
+        queryParameters.put("per_page", String.valueOf(perPage));
 
         return mFlickrPhotoApi.getFlickrPhotosSearch(queryParameters);
     }
