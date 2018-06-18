@@ -68,7 +68,7 @@ public class PhotoListFragment extends Fragment implements PhotoListContract.Vie
 
         mOnScrollListener = new InfiniteScrollListener(gridLayoutManager) {
             @Override
-            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+            public void onLoadMore(int page) {
                 mPresenter.loadFlickrImage(page + 1);
             }
         };
