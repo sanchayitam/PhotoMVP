@@ -34,7 +34,7 @@ This repository is able to help understand how to use the following skills.
 * How to convert JSON to Java Objects with Moshi
 * How to load images from a remote server with Glide
 * How to reduce boilerplate codes with ButterKnife
-* How to implement a Bottom Sheet component on Google Material Design guidelines for more fancy User Interface
+* How to implement a Bottom Sheet component on Google Material Design guidelines for fancier User Interface
 
 
 Screenshots
